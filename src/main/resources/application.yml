@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: bakery
+
+  datasource:
+    url: jdbc:postgresql://localhost:5431/bakery
+    username: admin
+    password: sc
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 8081
