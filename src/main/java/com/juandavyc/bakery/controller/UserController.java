@@ -3,6 +3,7 @@ package com.juandavyc.bakery.controller;
 import com.juandavyc.bakery.dto.page.response.PageResponse;
 import com.juandavyc.bakery.dto.user.request.UserCreateRequestDTO;
 import com.juandavyc.bakery.dto.user.request.UserUpdateRequestDTO;
+import com.juandavyc.bakery.dto.user.response.UserCreatedResponseDTO;
 import com.juandavyc.bakery.dto.user.response.UserResponseDTO;
 import com.juandavyc.bakery.service.user.UserService;
 
@@ -39,9 +40,24 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @GetMapping(path = "/search")
+    public ResponseEntity<PageResponse<UserResponseDTO>> search(
+            @RequestParam(required = false) Integer id,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String email,
+            @PageableDefault(size = 9, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                userService.search(
+                        id,
+                        username,
+                        email,
+                        pageable)
+        );
+    }
 
     @PostMapping()
-    public ResponseEntity<UserResponseDTO> create(
+    public ResponseEntity<UserCreatedResponseDTO> create(
             @Valid @RequestBody UserCreateRequestDTO user
     ) {
         final var userCreated = userService.create(user);
@@ -52,7 +68,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<UserResponseDTO> create(
+    public ResponseEntity<UserResponseDTO> update(
             @PathVariable Integer id,
             @Valid @RequestBody UserUpdateRequestDTO user
     ) {

@@ -1,8 +1,9 @@
 package com.juandavyc.bakery.dto.user.response;
 
-public record UserResponseDTO(
+public record UserCreatedResponseDTO(
         Integer id,
         String username,
         String email
 ) {
+
 }

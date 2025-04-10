@@ -1,7 +1,7 @@
 package com.juandavyc.bakery.repository;
 
-import com.juandavyc.bakery.entity.UserEntity;
-
+import com.juandavyc.bakery.dto.contactus.response.ContactUsResponseDTO;
+import com.juandavyc.bakery.entity.ContactUsEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -9,18 +9,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.lang.NonNull;
 
-
-public interface UserRepository extends
-        JpaRepository<UserEntity, Integer>,
-        JpaSpecificationExecutor<UserEntity>
-
-{
-
-    boolean existsByUsername(String username);
-    boolean existsByEmail(String email);
+public interface ContactUsRepository extends
+        JpaRepository<ContactUsEntity, Integer>,
+        JpaSpecificationExecutor<ContactUsEntity> {
 
     @NonNull
-    Page<UserEntity> findAll(Specification<UserEntity> specification, @NonNull Pageable pageable);
-
+    Page<ContactUsEntity> findAll(Specification<ContactUsEntity> specification, @NonNull Pageable pageable);
 
 }
