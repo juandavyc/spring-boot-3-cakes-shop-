@@ -34,6 +34,7 @@ public class CategoryEntity {
     private String slug;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private Set<ProductCategoryEntity> productCategories;
 
     @CreationTimestamp

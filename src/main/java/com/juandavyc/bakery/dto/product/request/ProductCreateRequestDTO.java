@@ -1,5 +1,6 @@
 package com.juandavyc.bakery.dto.product.request;
 
+import com.juandavyc.bakery.dto.productimage.request.ProductImageCreateRequestDTO;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -22,6 +22,7 @@ public class ProductCreateRequestDTO {
     private String name;
 
     @NotNull(message = "description is required")
+    @Size(min = 3,max = 600,message = "name must be between 3 or 600 characters")
     private String description;
 
     @NotNull(message = "price is required")
@@ -34,13 +35,15 @@ public class ProductCreateRequestDTO {
 
 //    @NotEmpty(message = "Category is required")
 //    @Size(min = 1, max = 4, message = "Must be minimum 1 or 4 categories maximum")
-    private Set<Integer> categoryIds = new HashSet<>();
+    private Set<Integer> categoryIds;
 
 //    @NotEmpty(message = "Occasion is required")
 //    @Size(min = 1, max = 4, message = "Must be minimum 1 or 4 occasions maximum")
-    private Set<Integer> occasionIds = new HashSet<>();
+    private Set<Integer> occasionIds;
 
-    @NotNull(message = "UserId is required")
+    private Set<ProductImageCreateRequestDTO> productImages;
+
+    @NotNull(message = "User is required")
     private Integer userId;
 
 }

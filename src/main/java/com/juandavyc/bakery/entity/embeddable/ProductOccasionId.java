@@ -1,12 +1,15 @@
 package com.juandavyc.bakery.entity.embeddable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Embeddable
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,9 +18,12 @@ import java.util.UUID;
 
 @Builder
 
-public class ProductOccasionId {
+public class ProductOccasionId implements Serializable {
 
+    @Column(name = "product_id")
     private UUID productId;
+
+    @Column(name = "occasion_id")
     private Integer occasionId;
 
     @Override

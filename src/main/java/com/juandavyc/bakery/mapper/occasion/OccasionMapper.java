@@ -1,4 +1,4 @@
-package com.juandavyc.bakery.mapper.user;
+package com.juandavyc.bakery.mapper.occasion;
 
 
 import com.juandavyc.bakery.dto.occasion.request.OccasionCreateRequestDTO;
@@ -13,6 +13,7 @@ public interface OccasionMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "slug", ignore = true)
+    @Mapping(target = "productOccasions", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     OccasionEntity occasionCreateRequestDTOToOccasionEntity(OccasionCreateRequestDTO occasionCreateRequestDTO);

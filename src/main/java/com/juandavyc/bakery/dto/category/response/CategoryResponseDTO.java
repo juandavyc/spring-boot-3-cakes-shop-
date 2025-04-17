@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public record CategoryResponseDTO(
         Integer id,
         String name,
-        String slug,
-        LocalDateTime createdAt
+        String slug
+        //LocalDateTime createdAt
 ) {
 }

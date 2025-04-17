@@ -25,11 +25,13 @@ public class ProductCategoryEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "categoryId")
     @JoinColumn(name = "category_id")
+    @ToString.Exclude
     private CategoryEntity category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "productId")
     @JoinColumn(name = "product_id")
+    @ToString.Exclude
     private ProductEntity product;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +39,8 @@ public class ProductCategoryEntity {
     public UserEntity addedBy;
 
     @CreationTimestamp
-    public LocalDateTime createdAt;
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
     @Override
     public boolean equals(Object object) {

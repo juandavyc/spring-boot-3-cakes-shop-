@@ -6,7 +6,7 @@ import com.juandavyc.bakery.dto.category.response.CategoryCreatedResponseDTO;
 import com.juandavyc.bakery.dto.category.response.CategoryResponseDTO;
 import com.juandavyc.bakery.dto.page.response.PageResponse;
 import com.juandavyc.bakery.mapper.page.PageMapper;
-import com.juandavyc.bakery.mapper.user.CategoryMapper;
+import com.juandavyc.bakery.mapper.category.CategoryMapper;
 import com.juandavyc.bakery.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

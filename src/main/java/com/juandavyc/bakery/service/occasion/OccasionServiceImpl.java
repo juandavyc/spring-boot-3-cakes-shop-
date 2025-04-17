@@ -7,7 +7,7 @@ import com.juandavyc.bakery.dto.occasion.response.OccasionCreatedResponseDTO;
 import com.juandavyc.bakery.dto.occasion.response.OccasionResponseDTO;
 import com.juandavyc.bakery.dto.page.response.PageResponse;
 import com.juandavyc.bakery.mapper.page.PageMapper;
-import com.juandavyc.bakery.mapper.user.OccasionMapper;
+import com.juandavyc.bakery.mapper.occasion.OccasionMapper;
 import com.juandavyc.bakery.repository.OccasionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

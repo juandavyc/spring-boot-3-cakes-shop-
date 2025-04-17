@@ -1,4 +1,4 @@
-package com.juandavyc.bakery.mapper.user;
+package com.juandavyc.bakery.mapper.category;
 
 
 import com.juandavyc.bakery.dto.category.request.CategoryCreateRequestDTO;
@@ -13,6 +13,7 @@ public interface CategoryMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "slug", ignore = true)
+    @Mapping(target = "productCategories", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     CategoryEntity categoryCreateRequestDTOToCategoryEntity(CategoryCreateRequestDTO categoryCreateRequestDTO);

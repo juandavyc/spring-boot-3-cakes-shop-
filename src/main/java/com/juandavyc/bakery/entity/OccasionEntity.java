@@ -30,8 +30,8 @@ public class OccasionEntity {
     @Column(unique = true, nullable = false)
     private String slug;
 
-
     @OneToMany(mappedBy = "occasion", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<ProductOccasionEntity> productOccasions;
 
     @CreationTimestamp

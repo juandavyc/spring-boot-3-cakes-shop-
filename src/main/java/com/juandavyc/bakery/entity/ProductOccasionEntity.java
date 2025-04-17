@@ -3,13 +3,14 @@ package com.juandavyc.bakery.entity;
 import com.juandavyc.bakery.entity.embeddable.ProductOccasionId;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_category")
+@Table(name = "product_occasion")
 
 @Setter
 @Getter
@@ -23,19 +24,22 @@ public class ProductOccasionEntity {
     private ProductOccasionId productOccasionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity addedBy;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "occasionId")
     @JoinColumn(name = "occasion_id")
+    @ToString.Exclude
     private OccasionEntity occasion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "productId")
     @JoinColumn(name = "product_id")
+    @ToString.Exclude
     private ProductEntity product;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity addedBy;
+
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
 
