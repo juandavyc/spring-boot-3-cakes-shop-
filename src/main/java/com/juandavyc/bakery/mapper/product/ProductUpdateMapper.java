@@ -16,13 +16,9 @@ public interface ProductUpdateMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "slug", source = "name", qualifiedByName = "toSlug")
-
     void productUpdateRequestDTOToProductEntity(
             ProductUpdateRequestDTO productUpdateRequestDTO,
             @MappingTarget ProductEntity productEntity);
-
-
-
 
     @Named("toSlug")
     default String toSlug(String name){

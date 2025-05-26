@@ -10,11 +10,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @Validated
 @RestController
@@ -54,6 +56,17 @@ public class OccasionController {
                 .created(URI.create("/api/occasions/" + occasionCreated.id()))
                 .body(occasionCreated);
     }
+    @PostMapping(path = "batch")
+    public ResponseEntity<List<OccasionCreatedResponseDTO>> createBatch(
+            @RequestBody List<String> occasionsToCreateRequestDTO
+    ) {
+        final var occasionsCreated = occasionService.createBatch(occasionsToCreateRequestDTO);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(occasionsCreated);
+    }
+
+
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(

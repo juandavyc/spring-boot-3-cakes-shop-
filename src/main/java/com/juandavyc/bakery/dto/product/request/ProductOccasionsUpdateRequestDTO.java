@@ -16,7 +16,7 @@ import java.util.Set;
 public class ProductOccasionsUpdateRequestDTO {
 
     @NotEmpty
-    private Set<Integer> occasionsIds;
+    private Set<Integer> occasionIds;
 
     private Integer userId;
 

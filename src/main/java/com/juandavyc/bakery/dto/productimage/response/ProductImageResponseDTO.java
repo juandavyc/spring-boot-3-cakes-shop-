@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 public record ProductImageResponseDTO(
         Integer id,
         String url,
-        String altText,
-        LocalDateTime createdAt
+        String altText
 ) {
 
 }

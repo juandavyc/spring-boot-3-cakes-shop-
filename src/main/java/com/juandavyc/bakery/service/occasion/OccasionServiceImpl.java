@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class OccasionServiceImpl implements OccasionService {
@@ -59,11 +62,24 @@ public class OccasionServiceImpl implements OccasionService {
         final var occasionEntity = occasionMapper
                 .occasionCreateRequestDTOToOccasionEntity(occasionCreateRequestDTO);
 
-        occasionEntity.setSlug(SlugUtil.toSlug(occasionCreateRequestDTO.getName()));
-
         final var occasionCreated = occasionRepository.save(occasionEntity);
 
         return occasionMapper.occasionEntityToOccasionCreatedResponseDTO(occasionCreated);
+    }
+
+    @Override
+    public List<OccasionCreatedResponseDTO> createBatch(List<String> occasionsToCreateRequestDTO) {
+
+        final var occasionEntities = occasionsToCreateRequestDTO.stream()
+                .map(occasionMapper::stringToOccasionEntity)
+                .toList();
+
+        final var occasionCreated = occasionRepository.saveAll(occasionEntities);
+
+        return occasionCreated.stream()
+                .map(occasionMapper::occasionEntityToOccasionCreatedResponseDTO)
+                .collect(Collectors.toList());
+
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

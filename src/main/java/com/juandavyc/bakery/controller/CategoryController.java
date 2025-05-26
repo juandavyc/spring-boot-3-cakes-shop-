@@ -13,11 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Set;
 
 @Validated
 @RestController
@@ -58,7 +61,19 @@ public class CategoryController {
                 .body(categoryCreated);
     }
 
-    @DeleteMapping(path = "/{id}")
+
+    @PostMapping(path = "batch")
+    public ResponseEntity<List<CategoryCreatedResponseDTO>> create(
+            @RequestBody List<String> categoriesToCreate
+    ) {
+        final var categoriesCreated = categoryService.createBatch(categoriesToCreate);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(categoriesCreated);
+    }
+
+
+        @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable Integer id
     ) {

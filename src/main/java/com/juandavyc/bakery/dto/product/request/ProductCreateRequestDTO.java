@@ -27,7 +27,7 @@ public class ProductCreateRequestDTO {
 
     @NotNull(message = "price is required")
     @Min(value = 2000, message = "price must be greater than 2000")
-    @Max(value = 1000000, message = "price must be less than 2000")
+    @Max(value = 1000000, message = "price must be less than 1000000")
     private BigInteger price;
 
     @NotBlank(message = "cover is required")

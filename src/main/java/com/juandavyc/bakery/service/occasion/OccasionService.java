@@ -6,6 +6,8 @@ import com.juandavyc.bakery.dto.occasion.response.OccasionResponseDTO;
 import com.juandavyc.bakery.dto.page.response.PageResponse;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface OccasionService {
 
     PageResponse<OccasionResponseDTO> getCategoriesPage(Pageable pageable);
@@ -16,6 +18,9 @@ public interface OccasionService {
 
     OccasionCreatedResponseDTO create(OccasionCreateRequestDTO occasionCreateRequestDTO);
 
+    List<OccasionCreatedResponseDTO> createBatch(List<String> occasionsToCreateRequestDTO);
+
     void deleteById(Integer id);
+
 
 }

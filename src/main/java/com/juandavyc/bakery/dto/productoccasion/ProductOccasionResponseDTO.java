@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 
 public record ProductOccasionResponseDTO(
         ProductOccasionId productOccasionId,
-        OccasionResponseDTO occasion,
-        LocalDateTime createdAt
+        OccasionResponseDTO occasion
 ) {
 
 }

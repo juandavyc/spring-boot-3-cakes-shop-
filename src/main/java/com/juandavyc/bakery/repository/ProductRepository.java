@@ -18,6 +18,8 @@ public interface ProductRepository extends
 
     ProductEntity findBySlug(String slug);
 
+    boolean existsByName(String name);
+
     @NonNull
     Page<ProductEntity> findAll(Specification<ProductEntity> specification, @NonNull Pageable pageable);
 }

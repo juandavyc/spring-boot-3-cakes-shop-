@@ -23,6 +23,7 @@ public interface ProductMapper {
     @Mapping(target = "productCategories", ignore = true)
     @Mapping(target = "productOccasions", ignore = true)
     @Mapping(target = "productImages", ignore = true)
+    @Mapping(target = "user", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     ProductEntity productCreateRequestDTOToProductEntity(ProductCreateRequestDTO productCreateRequestDTO);

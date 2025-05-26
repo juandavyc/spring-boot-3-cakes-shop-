@@ -45,4 +45,6 @@ public interface ProductService {
     void delete(UUID id);
 
     ProductImagesUpdatedResponseDTO updateImages(UUID id, ProductImagesUpdateRequestDTO productImagesUpdateRequestDTO);
+
+    Boolean availableByName(String name);
 }

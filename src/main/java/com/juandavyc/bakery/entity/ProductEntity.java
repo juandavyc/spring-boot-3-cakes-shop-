@@ -53,7 +53,6 @@ public class ProductEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-
     // fk
     @OneToMany(mappedBy = "product",
             cascade = CascadeType.ALL,
@@ -72,7 +71,10 @@ public class ProductEntity {
     private Set<ProductImageEntity> productImages;
 
 
-
+    @OneToMany(mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<OrderProductEntity> orderProducts;
 
     @Override
     public boolean equals(Object object) {

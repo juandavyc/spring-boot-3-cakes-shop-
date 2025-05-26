@@ -5,14 +5,20 @@ import com.juandavyc.bakery.dto.category.request.CategoryCreateRequestDTO;
 import com.juandavyc.bakery.dto.category.response.CategoryCreatedResponseDTO;
 import com.juandavyc.bakery.dto.category.response.CategoryResponseDTO;
 import com.juandavyc.bakery.dto.page.response.PageResponse;
+import com.juandavyc.bakery.entity.CategoryEntity;
 import com.juandavyc.bakery.mapper.page.PageMapper;
 import com.juandavyc.bakery.mapper.category.CategoryMapper;
 import com.juandavyc.bakery.repository.CategoryRepository;
+import jdk.jfr.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -51,18 +57,30 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.categoryEntityToCategoryResponseDTO(categoryEntity);
     }
 
-
     @Transactional(propagation = Propagation.REQUIRED)
     public CategoryCreatedResponseDTO create(CategoryCreateRequestDTO categoryCreateRequestDTO) {
 
         final var categoryEntity = categoryMapper
                 .categoryCreateRequestDTOToCategoryEntity(categoryCreateRequestDTO);
 
-        categoryEntity.setSlug(SlugUtil.toSlug(categoryCreateRequestDTO.getName()));
-
         final var categoryCreated = categoryRepository.save(categoryEntity);
 
         return categoryMapper.categoryEntityToCategoryCreatedResponseDTO(categoryCreated);
+    }
+
+    @Override
+    public List<CategoryCreatedResponseDTO> createBatch(List<String> categoriesToCreate) {
+
+         final var entities = categoriesToCreate.stream()
+                .map(categoryMapper::stringToCategoryEntity)
+                .toList();
+
+        final var entitiesCreated = categoryRepository.saveAll(entities);
+
+        return entitiesCreated.stream()
+                .map(categoryMapper::categoryEntityToCategoryCreatedResponseDTO)
+                .toList();
+
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

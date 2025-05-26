@@ -6,9 +6,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public record ProductOccasionsUpdatedResponseDTO(
-       UUID id,
-       String name,
-       String slug,
        Set<ProductOccasionResponseDTO> productOccasions
 ) {
 }

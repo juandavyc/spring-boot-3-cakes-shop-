@@ -115,6 +115,8 @@ public class ProductServiceImpl implements ProductService {
         final var productEntity = productMapper
                 .productCreateRequestDTOToProductEntity(productCreateRequestDTO);
 
+        productEntity.setUser(UserEntity.builder().id(userId).build());
+
         final var productCreated = productRepository.save(productEntity);
 
         final var categoryIds = productCreateRequestDTO.getCategoryIds();
@@ -221,7 +223,7 @@ public class ProductServiceImpl implements ProductService {
             throw new IllegalArgumentException("User Id " + userId + ", not found");
         }
 
-        final var newOccasionIds = productOccasionsUpdateRequestDTO.getOccasionsIds();
+        final var newOccasionIds = productOccasionsUpdateRequestDTO.getOccasionIds();
 
         final var countOccasions = occasionRepository.countByIdIn(newOccasionIds);
 
@@ -374,6 +376,11 @@ public class ProductServiceImpl implements ProductService {
         final var productUpdated = productRepository.save(productEntity);
 
         return productMapper.productEntityToProductImagesUpdatedResponseDTO(productUpdated);
+    }
+
+    @Override
+    public Boolean availableByName(String name) {
+        return !this.productRepository.existsByName(name);
     }
 
 //    public <ID, ENTITY> void validateAndSetRelation(

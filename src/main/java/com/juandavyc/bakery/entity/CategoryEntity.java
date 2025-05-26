@@ -46,11 +46,11 @@ public class CategoryEntity {
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         CategoryEntity that = (CategoryEntity) object;
-        return Objects.equals(id, that.id);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(slug, that.slug);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, name, slug);
     }
 }

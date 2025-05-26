@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.net.URI;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +27,13 @@ import java.util.UUID;
 public class ProductController {
 
     private final ProductService productService;
+
+    @GetMapping("/available")
+    public ResponseEntity<Boolean> availableByName(
+            @RequestParam String name
+    ){
+        return ResponseEntity.ok(productService.availableByName(name));
+    }
 
     @GetMapping
     public ResponseEntity<PageResponse<ProductResponseDTO>> getProductsPage(
@@ -50,9 +58,9 @@ public class ProductController {
 
     @GetMapping(path = "/search")
     public ResponseEntity<PageResponse<ProductResponseDTO>> getProductsSearch(
-            @RequestParam(name = "title", required = false) String name,
-            @RequestParam(name = "min-price", required = false) BigInteger minPrice,
-            @RequestParam(name = "max-price", required = false) BigInteger maxPrice,
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "minPrice", required = false) BigInteger minPrice,
+            @RequestParam(name = "maxPrice", required = false) BigInteger maxPrice,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String occasion,
             @PageableDefault(size = 9, direction = Sort.Direction.ASC) Pageable pageable
@@ -66,7 +74,6 @@ public class ProductController {
                         occasion,
                         pageable
                 )
-
         );
     }
 
@@ -74,7 +81,10 @@ public class ProductController {
     public ResponseEntity<ProductCreatedResponseDTO> create(
             @Valid @RequestBody ProductCreateRequestDTO productCreateRequestDTO
     ) {
-        return ResponseEntity.ok(productService.create(productCreateRequestDTO));
+        final var productCreated = productService.create(productCreateRequestDTO);
+        return ResponseEntity.created(
+                URI.create("/api/products/"+productCreated.id().toString())
+        ).body(productCreated);
     }
 
     @PutMapping(path = "/{id}")
