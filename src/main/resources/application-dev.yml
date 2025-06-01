@@ -1,6 +1,9 @@
 spring:
   application:
     name: bakery
+  web:
+    cors:
+      allowed-origins: "http://localhost:4200"
 
   datasource:
     url: jdbc:postgresql://localhost:5431/bakery

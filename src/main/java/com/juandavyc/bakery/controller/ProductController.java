@@ -37,7 +37,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<PageResponse<ProductResponseDTO>> getProductsPage(
-            @PageableDefault(size = 9, direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 9, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         return ResponseEntity.ok(productService.getProductsPage(pageable));
     }
@@ -63,7 +63,7 @@ public class ProductController {
             @RequestParam(name = "maxPrice", required = false) BigInteger maxPrice,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String occasion,
-            @PageableDefault(size = 9, direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 9, sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         return ResponseEntity.ok(
                 productService.getProductsSearch(

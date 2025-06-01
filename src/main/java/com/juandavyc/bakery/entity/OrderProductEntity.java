@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "order_product")
+@Table(name = "products_orders")
 
 @Setter
 @Getter

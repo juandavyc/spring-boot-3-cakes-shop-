@@ -1,6 +1,9 @@
 spring:
   application:
     name: bakery
+  web:
+    cors:
+      allowed-origins: ${FRONT_HOST}
 
   datasource:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}

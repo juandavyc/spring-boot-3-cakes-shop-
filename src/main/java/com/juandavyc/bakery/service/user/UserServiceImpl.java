@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
     public PageResponse<UserResponseDTO> getUsersPage(Pageable pageable) {
 
         final var users = userRepository.findAll(pageable);
+
         if (users.isEmpty()) {
             throw new IllegalArgumentException("No users found");
         }

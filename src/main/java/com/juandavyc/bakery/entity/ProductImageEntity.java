@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "product_image")
+@Table(name = "products_images")
 
 @Setter
 @Getter

@@ -12,6 +12,7 @@ public interface UserService {
 
 
     PageResponse<UserResponseDTO> getUsersPage(Pageable pageable);
+
     UserResponseDTO getUserById(Integer id);
 
     PageResponse<UserResponseDTO> search(

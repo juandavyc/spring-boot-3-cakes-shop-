@@ -25,6 +25,8 @@ import java.util.Set;
 @Validated
 @RestController
 @RequestMapping(path = "/api/categories")
+//@RequestMapping("/api/categories")
+//@PreAuthorize("isAuthenticated()")  // Requiere JWT
 @RequiredArgsConstructor
 public class CategoryController {
 

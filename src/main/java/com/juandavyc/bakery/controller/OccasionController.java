@@ -56,6 +56,7 @@ public class OccasionController {
                 .created(URI.create("/api/occasions/" + occasionCreated.id()))
                 .body(occasionCreated);
     }
+
     @PostMapping(path = "batch")
     public ResponseEntity<List<OccasionCreatedResponseDTO>> createBatch(
             @RequestBody List<String> occasionsToCreateRequestDTO

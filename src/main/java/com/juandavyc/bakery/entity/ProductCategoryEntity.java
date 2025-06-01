@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_category")
+@Table(name = "products_categories")
 
 @Setter
 @Getter
