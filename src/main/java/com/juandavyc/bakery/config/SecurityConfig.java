@@ -46,7 +46,7 @@ public class SecurityConfig {
                 // set session management to stateless
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers("/auth/**").permitAll();
+                    authorize.requestMatchers("/auth/**","/").permitAll();
                     authorize.requestMatchers("/public/**").permitAll();
                     //authorize.requestMatchers("/api/categories/**").permitAll();
                     //authorize.requestMatchers("/api/students/**").hasAnyRole("ADMIN", "USER");
